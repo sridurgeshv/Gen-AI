@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from 'react';
-import 'fabric';  // First import fabric.js
 const fabric = window.fabric;  // Then get fabric from window object
 import '../styles/Canvas.css';
 
