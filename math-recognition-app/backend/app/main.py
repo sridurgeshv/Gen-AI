@@ -35,4 +35,3 @@ async def recognize_math(file: UploadFile = File(...)):
         return {"recognized_text": text.strip()}
     except Exception as e:
         return {"error": str(e)}
-

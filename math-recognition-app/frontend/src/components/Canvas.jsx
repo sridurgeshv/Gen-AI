@@ -58,10 +58,17 @@ const Canvas = () => {
       
       const formData = new FormData();
       formData.append('file', blob, 'equation.png');
+  
       const response = await fetch('http://localhost:8000/recognize', {
         method: 'POST',
         body: formData,
+        mode: 'cors',  // Add this
       });
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
       console.log('Recognized text:', data.recognized_text);
     } catch (error) {
