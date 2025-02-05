@@ -11,7 +11,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:5173", "http://127.0.0.1:5173", "https://shiny-space-robot-r65w7gq7xrj2pxvq-5173.app.github.dev/", ""],  # Allow both localhost and 127.0.0.1
     allow_credentials=True,
-    allow_methods=[""],
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 

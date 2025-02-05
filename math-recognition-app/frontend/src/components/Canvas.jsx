@@ -53,6 +53,11 @@ const Canvas = () => {
 
   const handleRecognize = async () => {
     try {
+      if (!fabricRef.current) {
+        console.error('Canvas not initialized');
+        return;
+      }
+  
       const dataURL = fabricRef.current.toDataURL();
       const blob = await (await fetch(dataURL)).blob();
       
@@ -70,11 +75,13 @@ const Canvas = () => {
       }
       
       const data = await response.json();
-      console.log('Recognized text:', data.recognized_text);
-    } catch (error) {
-      console.error('Error recognizing equation:', error);
-    }
-  };
+    console.log('Recognized text:', data.recognized_text);
+    // Add UI feedback here for the recognized text
+    
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
+};
 
   return (
     <div className="canvas-container">
