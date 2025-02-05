@@ -53,35 +53,21 @@ const Canvas = () => {
 
   const handleRecognize = async () => {
     try {
-      if (!fabricRef.current) {
-        console.error('Canvas not initialized');
-        return;
-      }
-  
       const dataURL = fabricRef.current.toDataURL();
       const blob = await (await fetch(dataURL)).blob();
       
       const formData = new FormData();
       formData.append('file', blob, 'equation.png');
-  
       const response = await fetch('http://localhost:8000/recognize', {
         method: 'POST',
         body: formData,
-        mode: 'cors',  // Add this
       });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
       const data = await response.json();
-    console.log('Recognized text:', data.recognized_text);
-    // Add UI feedback here for the recognized text
-    
-  } catch (error) {
-    console.error('Error:', error.message);
-  }
-};
+      console.log('Recognized text:', data.recognized_text);
+    } catch (error) {
+      console.error('Error recognizing equation:', error);
+    }
+  };
 
   return (
     <div className="canvas-container">
