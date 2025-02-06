@@ -1,32 +1,27 @@
 import React, { useEffect, useRef, useState } from 'react';
-const fabric = window.fabric;  // Get fabric from the window object
+const fabric = window.fabric;
 import '../styles/Canvas.css';
 
 const Canvas = () => {
-  const canvasRef = useRef(null); // Reference for the canvas container
-  const fabricRef = useRef(null); // Reference for the Fabric canvas
-  const [recognizedText, setRecognizedText] = useState(''); // State to store recognized text
-  const [isLoading, setIsLoading] = useState(false); // State to handle loading state
-  const [error, setError] = useState(''); // State to handle errors
+  const canvasRef = useRef(null);
+  const fabricRef = useRef(null);
+  const [recognizedText, setRecognizedText] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
   useEffect(() => {
-    // Create a canvas element with initial dimensions
     const canvas = document.createElement('canvas');
     canvas.width = 600;
     canvas.height = 400;
 
-    // Replace the existing canvas with our new one
     const canvasContainer = canvasRef.current;
     if (canvasContainer && !fabricRef.current) {
-      // Remove any existing canvas
       while (canvasContainer.firstChild) {
         canvasContainer.removeChild(canvasContainer.firstChild);
       }
 
-      // Add the new canvas
       canvasContainer.appendChild(canvas);
 
-      // Initialize Fabric canvas
       fabricRef.current = new fabric.Canvas(canvas, {
         isDrawingMode: true,
         backgroundColor: 'white',
@@ -34,7 +29,6 @@ const Canvas = () => {
         height: 400,
       });
 
-      // Configure drawing settings
       fabricRef.current.freeDrawingBrush.width = 2;
       fabricRef.current.freeDrawingBrush.color = '#000000';
     }
@@ -51,8 +45,8 @@ const Canvas = () => {
     if (fabricRef.current) {
       fabricRef.current.clear();
       fabricRef.current.setBackgroundColor('white', fabricRef.current.renderAll.bind(fabricRef.current));
-      setRecognizedText(''); // Clear recognized text
-      setError(''); // Clear any errors
+      setRecognizedText('');
+      setError('');
     }
   };
 
@@ -63,18 +57,15 @@ const Canvas = () => {
         return;
       }
 
-      setIsLoading(true); // Set loading state
-      setError(''); // Clear any previous errors
+      setIsLoading(true);
+      setError('');
 
-      // Convert canvas to data URL
       const dataURL = fabricRef.current.toDataURL();
       const blob = await (await fetch(dataURL)).blob();
 
-      // Prepare form data for the API request
       const formData = new FormData();
       formData.append('file', blob, 'equation.png');
 
-      // Send the image to the backend for recognition
       const response = await fetch('http://localhost:8000/recognize', {
         method: 'POST',
         body: formData,
@@ -85,14 +76,14 @@ const Canvas = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      // Parse the response
       const data = await response.json();
-      setRecognizedText(data.recognized_text); // Update recognized text
+      // Remove $$ from the beginning and end of the recognized text
+      setRecognizedText(data.recognized_text.replace(/^\$\$|\$\$$/g, ''));
     } catch (error) {
       console.error('Error:', error.message);
-      setError('Failed to recognize the equation. Please try again.'); // Set error message
+      setError('Failed to recognize the equation. Please try again.');
     } finally {
-      setIsLoading(false); // Reset loading state
+      setIsLoading(false);
     }
   };
 
