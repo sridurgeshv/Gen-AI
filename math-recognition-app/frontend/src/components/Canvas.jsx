@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 const fabric = window.fabric;
+import EquationDisplay from './EquationDisplay';
 import '../styles/Canvas.css';
 
 const Canvas = () => {
@@ -88,25 +89,22 @@ const Canvas = () => {
   };
 
   return (
-    <div className="canvas-container">
-      <div ref={canvasRef} style={{ border: '1px solid #ccc' }} />
-      <div className="button-container">
-        <button onClick={handleClear}>Clear</button>
-        <button onClick={handleRecognize} disabled={isLoading}>
-          {isLoading ? 'Recognizing...' : 'Recognize'}
-        </button>
+    <div className="app-container">
+      <div className="canvas-container">
+        <div ref={canvasRef} style={{ border: '1px solid #ccc' }} />
+        <div className="button-container">
+          <button onClick={handleClear}>Clear</button>
+          <button onClick={handleRecognize} disabled={isLoading}>
+            {isLoading ? 'Recognizing...' : 'Recognize'}
+          </button>
+        </div>
+        {error && (
+          <div className="error-container">
+            <p style={{ color: 'red' }}>{error}</p>
+          </div>
+        )}
       </div>
-      {recognizedText && (
-        <div className="result-container">
-          <h3>Recognized Text:</h3>
-          <p>{recognizedText}</p>
-        </div>
-      )}
-      {error && (
-        <div className="error-container">
-          <p style={{ color: 'red' }}>{error}</p>
-        </div>
-      )}
+      <EquationDisplay recognizedText={recognizedText} />
     </div>
   );
 };
