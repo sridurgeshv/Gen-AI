@@ -1,5 +1,3 @@
-# Overview
-This system provides document analysis capabilities using state-of-the-art AI models including Gemini. It features a modern web interface for document uploads and processing, with real-time analysis results.
 
 ### Getting Started
 ### Prerequisites
