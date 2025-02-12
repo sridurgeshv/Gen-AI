@@ -1,29 +1,55 @@
-for frontend 
-run  -  npm run dev
+# Overview
+This system provides document analysis capabilities using state-of-the-art AI models including Gemini. It features a modern web interface for document uploads and processing, with real-time analysis results.
 
-for backend 
+### Getting Started
+### Prerequisites
 
-## Installations 
+- Node.js (16.x or higher)
+- Python (3.8 or higher)
+- pip package manager
 
-```bash 
-pip install fastapi uvicorn pillow 
 
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+## Frontend Setup
 
-pip install gradio spaces transformers accelerate numpy requests torch torchvision qwen-vl-utils av ipython reportlab fpdf python-docx pillow huggingface_hub
+1. Navigate to the frontend directory:
 
-pip install -q -U google-genai
+```bash
+cd frontend
 ```
 
+2. Install dependencies:
+```bash
+npm install
+```
 
-Run - 
+3. Start the development server:
+```bash
+npm run dev
+```
+The frontend will be available at `http://localhost:3000` (or your configured port).
 
-note - place your gemini key in line 109 of main.py file
+## Backend Setup
 
-cd to backend/app
+1. Navigate to the backend directory:
+```bash
+cd backend/app
+```
+2. Install required Python packages:
+```bash
+pip install fastapi uvicorn pillow
+pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
+pip install gradio spaces transformers accelerate numpy requests torch torchvision qwen-vl-utils av ipython reportlab fpdf python-docx pillow huggingface_hub
+pip install -q -U google-genai
+pip install opencv-contrib-python
+```
 
-then do 
+3. Configure Gemini API:
+- Open main.py
+- Locate line 113
+- Replace YOUR_API_KEY with your Gemini API key
 
+4. Start the backend server:
 ```bash
 uvicorn main:app --reload
 ```
+The backend API will be available at `http://localhost:8000.`
