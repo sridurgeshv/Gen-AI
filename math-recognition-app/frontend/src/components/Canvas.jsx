@@ -79,7 +79,7 @@ const Canvas = () => {
 
       const data = await response.json();
       // Remove $$ from the beginning and end of the recognized text
-      setRecognizedText(data.recognized_text.replace(/^\$\$|\$\$$/g, ''));
+      setRecognizedText(data.recognized_text);
     } catch (error) {
       console.error('Error:', error.message);
       setError('Failed to recognize the equation. Please try again.');
@@ -87,6 +87,43 @@ const Canvas = () => {
       setIsLoading(false);
     }
   };
+
+  const handleRecognizeGemini = async () => {
+    try {
+      if (!fabricRef.current) {
+        console.error('Canvas not initialized');
+        return;
+      }
+
+      setIsLoading(true);
+      setError('');
+
+      const dataURL = fabricRef.current.toDataURL();
+      const blob = await (await fetch(dataURL)).blob();
+
+      const formData = new FormData();
+      formData.append('file', blob, 'equation.png');
+
+      const response = await fetch('http://localhost:8000/gemini_recognize', {
+        method: 'POST',
+        body: formData,
+        mode: 'cors',
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setRecognizedText(data.recognized_text);
+    } catch (error) {
+      console.error('Error:', error.message);
+      setError('Failed to recognize the equation with Gemini. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
 
   return (
     <div className="app-container">
@@ -96,6 +133,9 @@ const Canvas = () => {
           <button onClick={handleClear}>Clear</button>
           <button onClick={handleRecognize} disabled={isLoading}>
             {isLoading ? 'Recognizing...' : 'Recognize'}
+          </button>
+          <button onClick={handleRecognizeGemini} disabled={isLoading}>
+            {isLoading ? 'Recognizing with Gemini...' : 'Recognize with Gemini'}
           </button>
         </div>
         {error && (
