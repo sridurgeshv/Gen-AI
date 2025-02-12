@@ -6,11 +6,11 @@ for backend
 ## Installations 
 
 ```bash 
-pip install fastapi uvicorn pillow pytesseract
+pip install fastapi uvicorn pillow 
 
 pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 
-pip install texify
+pip install gradio spaces transformers accelerate numpy requests torch torchvision qwen-vl-utils av ipython reportlab fpdf python-docx pillow huggingface_hub
 ```
 
 
