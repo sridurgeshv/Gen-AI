@@ -99,14 +99,18 @@ async def recognize_math(file: UploadFile = File(...)):
             generated_ids_trimmed, skip_special_tokens=True, clean_up_tokenization_spaces=False
         )
 
+        # Clean up the recognized text by removing unnecessary tokens
+        cleaned_text = output_text[0].replace("<|im_end|>", "").strip()
+
         # Return the recognized text
-        return JSONResponse(content={"recognized_text": output_text[0]})
+        return JSONResponse(content={"recognized_text": cleaned_text})
 
     except Exception as e:
         print(f"Error: {str(e)}")  # Print error to debug
         return JSONResponse(content={"error": str(e)}, status_code=500)
+    
 
-client = genai.Client(api_key="gemini-api-key")
+client = genai.Client(api_key="AIzaSyBW4iVtavUDmevGZlLqp1BGhzyi-mMvRiw")
 
 @app.post("/gemini_recognize")
 async def recognize_math_gemini(file: UploadFile = File(...)):
@@ -114,7 +118,7 @@ async def recognize_math_gemini(file: UploadFile = File(...)):
         contents = await file.read()
         image = Image.open(io.BytesIO(contents)).convert("RGB")
         response = client.models.generate_content(
-            model="gemini-2.0-flash", contents=[image, "Explain the type of equation and Recognize the equation in this image."]
+            model="gemini-2.0-flash", contents=[image, "Recognize the equation in this image."]
         )
         return JSONResponse(content={"recognized_text": response.text})
     except Exception as e:
