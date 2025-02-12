@@ -18,6 +18,8 @@ pip install -q -U google-genai
 
 Run - 
 
+note - place your gemini key in line 109 of main.py file
+
 cd to backend/app
 
 then do 
