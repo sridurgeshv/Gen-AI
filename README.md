@@ -42,9 +42,9 @@ pip install opencv-contrib-python
 ```
 
 3. Configure Gemini API:
-- Open main.py
-- Locate line 113
-- Replace YOUR_API_KEY with your Gemini API key
+- Open `main.py`
+- Locate *line 113*
+- Replace `YOUR_API_KEY with your Gemini API key`
 
 4. Start the backend server:
 ```bash
