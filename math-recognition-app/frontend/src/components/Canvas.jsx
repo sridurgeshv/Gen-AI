@@ -129,14 +129,14 @@ const Canvas = () => {
     <div className="app-container">
       <div className="canvas-container">
         <div ref={canvasRef} style={{ border: '1px solid #ccc' }} />
-        <div className="button-container">
-          <button onClick={handleClear}>Clear</button>
+        <div className="button-container">          
           <button onClick={handleRecognize} disabled={isLoading}>
-            {isLoading ? 'Recognizing...' : 'Recognize'}
+            {isLoading ? 'Recognizing...' : 'Launch My Model'}
           </button>
           <button onClick={handleRecognizeGemini} disabled={isLoading}>
-            {isLoading ? 'Recognizing with Gemini...' : 'Recognize with Gemini'}
+            {isLoading ? 'Recognizing with Gemini...' : 'Launch Gemini AI'}
           </button>
+          <button onClick={handleClear}>Clear</button>
         </div>
         {error && (
           <div className="error-container">
