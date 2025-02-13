@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <h1>NumBuddy</h1>
-      <p>Your Friendly Math Sidekick!</p>
+      <p className="tagline">Your Friendly Math Sidekick!</p>
       <Canvas /> {/* This will render your Canvas component */}
     </>
   );
