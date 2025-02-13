@@ -123,3 +123,33 @@ async def recognize_math_gemini(file: UploadFile = File(...)):
         return JSONResponse(content={"recognized_text": response.text})
     except Exception as e:
         return JSONResponse(content={"error": str(e)}, status_code=500)
+
+@app.post("/solve_equation")
+async def solve_equation(equation_data: dict):
+    try:
+        equation = equation_data.get("equation")
+        
+        # Create a prompt that asks for step-by-step solution
+        prompt = f"""Given the equation or mathematical expression: {equation}
+        Please solve this step by step, explaining each step clearly but in short and simple steps. Separate each step with a newline. If it's not an equation to solve,
+        please evaluate or explain the expression."""
+        
+        # Generate solution using Gemini
+        response = client.models.generate_content(
+            model="gemini-2.0-flash",
+            contents=[prompt]
+        )
+        
+        # Clean up any remaining markdown or special characters
+        solution = response.text.replace('**', '').replace('***', '').replace('`', '')
+        
+        # Add line breaks for better readability
+        solution = solution.replace('Step', '\nStep')
+        solution = solution.replace('Conclusion:', '\nConclusion:')
+        
+        return JSONResponse(content={"solution": solution})
+    except Exception as e:
+        return JSONResponse(
+            content={"error": f"Failed to solve equation: {str(e)}"}, 
+            status_code=500
+        )
