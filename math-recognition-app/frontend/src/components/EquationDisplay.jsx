@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
+import '../styles/Eqdisplay.css';
 
 const Message = ({ content, isUser }) => (
-  <div className={`flex ${isUser ? 'justify-end' : 'justify-start'} mb-4`}>
-    <div className={`max-w-[80%] p-3 rounded-lg ${
-      isUser ? 'bg-blue-500 text-white ml-auto' : 'bg-gray-100 text-black mr-auto'
-    }`}>
-      <p className="text-sm">{content}</p>
+  <div className={`message-container ${isUser ? 'user-message' : 'assistant-message'}`}>
+    <div className={`message-bubble ${isUser ? 'user-bubble' : 'assistant-bubble'}`}>
+      <p className="message-text">{content}</p>
     </div>
   </div>
 );
@@ -17,15 +16,12 @@ const EquationDisplay = ({ recognizedText }) => {
 
   useEffect(() => {
     if (recognizedText && !messages.some(msg => msg.content === recognizedText)) {
-      // Add user's equation as a message
       setMessages(prev => [...prev, { content: recognizedText, isUser: true }]);
-      // Generate solution using Gemini
       generateSolution(recognizedText);
     }
   }, [recognizedText]);
 
   useEffect(() => {
-    // Scroll to bottom when new messages arrive
     if (chatContainerRef.current) {
       chatContainerRef.current.scrollTop = chatContainerRef.current.scrollHeight;
     }
@@ -60,17 +56,14 @@ const EquationDisplay = ({ recognizedText }) => {
   };
 
   return (
-    <div className="equation-display w-full max-w-2xl mx-auto bg-white rounded-lg shadow-md">
-      <div className="border-b p-4">
-        <h3 className="text-lg font-semibold text-center">Chat with NumBuddy</h3>
+    <div className="equation-display">
+      <div className="display-header">
+        <h3 className="header-title">Chat with NumBuddy</h3>
       </div>
       
-      <div 
-        ref={chatContainerRef}
-        className="h-[400px] overflow-y-auto p-4"
-      >
+      <div ref={chatContainerRef} className="chat-container">
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full text-gray-500">
+          <div className="empty-state">
             Write an equation on the canvas and I'll help you solve it!
           </div>
         ) : (
@@ -79,9 +72,9 @@ const EquationDisplay = ({ recognizedText }) => {
               <Message key={index} {...message} />
             ))}
             {isLoading && (
-              <div className="flex justify-start mb-4">
-                <div className="bg-gray-100 p-3 rounded-lg">
-                  <p className="text-sm">Thinking...</p>
+              <div className="loading-indicator">
+                <div className="loading-bubble">
+                  <p className="loading-text">Thinking...</p>
                 </div>
               </div>
             )}

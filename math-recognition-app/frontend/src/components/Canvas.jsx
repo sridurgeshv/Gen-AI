@@ -128,7 +128,13 @@ const Canvas = () => {
   return (
     <div className="app-container">
       <div className="canvas-container">
-        <div ref={canvasRef} style={{ border: '1px solid #ccc' }} />
+      <div
+          ref={canvasRef}
+          style={{
+            border: '4px solid #000',
+            borderRadius: '10px'
+          }}
+        />
         <div className="button-container">          
           <button onClick={handleRecognize} disabled={isLoading}>
             {isLoading ? 'Recognizing...' : 'Launch My Model'}
