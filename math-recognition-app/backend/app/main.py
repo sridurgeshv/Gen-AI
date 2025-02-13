@@ -129,10 +129,28 @@ async def solve_equation(equation_data: dict):
     try:
         equation = equation_data.get("equation")
         
-        # Create a prompt that asks for step-by-step solution
+        # Create a prompt that asks for formatted step-by-step solution
         prompt = f"""Given the equation or mathematical expression: {equation}
-        Please solve this step by step, explaining each step clearly but in short and simple steps. Separate each step with a newline. If it's not an equation to solve,
-        please evaluate or explain the expression."""
+        Please solve this step by step, following these formatting rules:
+        1. Use simple, clear language
+        2. Separate each step with a newline
+        3. Use "Step 1:", "Step 2:", etc. for clarity
+        4. If showing equations, write them plainly without special formatting
+        5. Avoid using asterisks or markdown
+        6. Start with "Let's solve this step by step:"
+        7. End with a clear conclusion
+        
+        Format example:
+        Let's solve this step by step:
+        
+        Step 1: First, let's understand what we have
+        [explanation]
+        
+        Step 2: [next step]
+        [explanation]
+        
+        Conclusion: [final answer or explanation]
+        """
         
         # Generate solution using Gemini
         response = client.models.generate_content(
