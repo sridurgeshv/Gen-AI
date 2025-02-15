@@ -1,18 +1,35 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React from 'react';
+import { useState, useEffect } from 'react';
 import './App.css'
 import Canvas from './components/Canvas';
 
 function App() {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
     <>
-      <h1>NumBuddy</h1>
-      <p className="tagline">Your Friendly Math Sidekick!</p>
-      <Canvas /> {/* This will render your Canvas component */}
+      <div className="header-container">
+        <h1 className="animated-title">
+          <span className="letter">N</span>
+          <span className="letter">u</span>
+          <span className="letter">m</span>
+          <span className="letter bounce">B</span>
+          <span className="letter">u</span>
+          <span className="letter">d</span>
+          <span className="letter">d</span>
+          <span className="letter">y</span>
+        </h1>
+        <p className={`tagline ${isVisible ? 'slide-in' : ''}`}>
+          Your Friendly Math Sidekick!
+        </p>
+      </div>
+      <Canvas />
     </>
   );
 }
 
 export default App;
-
