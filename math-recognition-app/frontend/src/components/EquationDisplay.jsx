@@ -4,7 +4,21 @@ import '../styles/Eqdisplay.css';
 const Message = ({ content, isUser }) => (
   <div className={`message-container ${isUser ? 'user-message' : 'assistant-message'}`}>
     <div className={`message-bubble ${isUser ? 'user-bubble' : 'assistant-bubble'}`}>
-      <p className="message-text">{content}</p>
+      {isUser ? (
+        <p className="message-text">{content}</p>
+      ) : (
+        <div className="solution-text">
+          {content.split('\n').map((line, index) => (
+            <p key={index} className={
+              line.startsWith('Step') ? 'solution-step' :
+              line.startsWith('Conclusion') ? 'solution-conclusion' :
+              'solution-detail'
+            }>
+              {line}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   </div>
 );

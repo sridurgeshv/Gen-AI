@@ -129,41 +129,33 @@ async def solve_equation(equation_data: dict):
     try:
         equation = equation_data.get("equation")
         
-        # Create a prompt that asks for formatted step-by-step solution
-        prompt = f"""Given the equation or mathematical expression: {equation}
-        Please solve this step by step, following these formatting rules:
-        1. Use simple, clear language
-        2. Separate each step with a newline
-        3. Use "Step 1:", "Step 2:", etc. for clarity
-        4. If showing equations, write them plainly without special formatting
-        5. Avoid using asterisks or markdown
-        6. Start with "Let's solve this step by step:"
-        7. End with a clear conclusion
-        
-        Format example:
+        prompt = f"""Given the equation: {equation}
+        Solve step by step with this exact format:
         Let's solve this step by step:
         
-        Step 1: First, let's understand what we have
-        [explanation]
+        Step 1: Understand the problem
+        [brief explanation]
         
-        Step 2: [next step]
-        [explanation]
+        Step 2: [action]
+        [brief result]
         
-        Conclusion: [final answer or explanation]
+        Step 3: [action]
+        [brief result]
+        
+        Conclusion: [final answer]
         """
         
-        # Generate solution using Gemini
         response = client.models.generate_content(
             model="gemini-2.0-flash",
             contents=[prompt]
         )
         
-        # Clean up any remaining markdown or special characters
-        solution = response.text.replace('**', '').replace('***', '').replace('`', '')
-        
-        # Add line breaks for better readability
-        solution = solution.replace('Step', '\nStep')
-        solution = solution.replace('Conclusion:', '\nConclusion:')
+        # Clean and format the solution
+        solution = response.text.strip()
+        # Ensure consistent line breaks
+        solution = solution.replace('\r\n', '\n').replace('\r', '\n')
+        # Remove extra blank lines
+        solution = '\n'.join(line for line in solution.split('\n') if line.strip())
         
         return JSONResponse(content={"solution": solution})
     except Exception as e:

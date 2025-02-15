@@ -39,6 +39,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 pip install gradio spaces transformers accelerate numpy requests torch torchvision qwen-vl-utils av ipython reportlab fpdf python-docx pillow huggingface_hub
 pip install -q -U google-genai
 pip install opencv-contrib-python
+pip install opencv-python
 ```
 
 3. Configure Gemini API:

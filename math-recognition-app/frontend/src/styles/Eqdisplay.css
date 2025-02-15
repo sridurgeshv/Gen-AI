@@ -84,3 +84,25 @@
   .loading-text {
     font-size: 0.875rem;
   }
+
+  .solution-text {
+    white-space: pre-line;
+    line-height: 1.6;
+  }
+  
+  .solution-step {
+    font-weight: 600;
+    margin: 12px 0 4px 0;
+    color: #2563eb;
+  }
+  
+  .solution-conclusion {
+    font-weight: 600;
+    margin-top: 12px;
+    color: #059669;
+  }
+  
+  .solution-detail {
+    margin: 4px 0;
+    padding-left: 16px;
+  }
