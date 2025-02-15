@@ -91,9 +91,9 @@
   }
   
   .solution-step {
-    font-weight: 600;
+    font-weight: 700;
     margin: 12px 0 4px 0;
-    color: #2563eb;
+    color: black;
   }
   
   .solution-conclusion {
