@@ -1,27 +1,25 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
+* {
+  margin: 0;
   padding: 0;
-  height: 65vh;
+  box-sizing: border-box;
+}
+
+.app-container {
+  width: 100vw;
+  height: 100vh;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  background-color: #fff;
+  overflow-x: hidden;
 }
 
 .header-container {
-  position: relative;
-  padding-top: 2rem;
-  text-align: center;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0 auto;
+  text-align: center;
+  padding: 2rem 0;
 }
 
-/* Rest of the CSS remains the same */
 .animated-title {
   font-size: 3.5rem;
   display: inline-block;
@@ -30,7 +28,6 @@
   background-clip: text;
   color: transparent;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-  text-align: center;
 }
 
 .letter {
@@ -62,7 +59,6 @@
   background-clip: text;
   color: transparent;
   margin-top: 0.5rem;
-  text-align: center;
 }
 
 .slide-in {

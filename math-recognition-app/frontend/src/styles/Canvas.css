@@ -1,17 +1,17 @@
 /* Add to Canvas.css */
-
-.app-container {
+.main-content {
   display: flex;
   gap: 2rem;
   padding: 1rem;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  max-width: 1400px;
 }
 
 .canvas-container {
   flex: 1;
-  margin-top: 15px;
-  max-width: 800px;
+  max-width: 600px;
 }
 
 .equation-display {

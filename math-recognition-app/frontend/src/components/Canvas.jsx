@@ -126,8 +126,8 @@ const Canvas = () => {
 
 
   return (
-    <div className="app-container">
-      <div className="canvas-container">
+    <div className="main-content">
+    <div className="canvas-container">
       <div
           ref={canvasRef}
           style={{
