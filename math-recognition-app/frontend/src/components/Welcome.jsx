@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronRight, Sparkles } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Welcome.css';
 
 const Welcome = ({ onComplete }) => {
     const [showContent, setShowContent] = useState(false);
     const [showButton, setShowButton] = useState(false);
+    const navigate = useNavigate();
     
     useEffect(() => {
       setTimeout(() => setShowContent(true), 500);
@@ -34,8 +36,8 @@ const Welcome = ({ onComplete }) => {
           <h1 className="welcome-title">NumBuddy</h1>
           <p className="welcome-text">Your journey to math mastery begins here</p>
           {showButton && (
-            <button onClick={onComplete} className="start-button">
-              <span>Get Started</span>
+              <button className="start-button"
+      onClick={() => navigate('/signin')}>Unlock Now
               <ChevronRight />
             </button>
           )}

@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .app-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    overflow-x: hidden;
+  }
+  
+  .header-container {
+    width: 100%;
+    text-align: center;
+    padding: 2rem 0;
+  }
+  
+  .animated-title {
+    font-size: 3.5rem;
+    display: inline-block;
+    background: linear-gradient(45deg, #2196F3, #FF4081);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .letter {
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+  
+  .letter:hover {
+    transform: translateY(-5px) rotate(5deg);
+    color: #FF4081;
+  }
+  
+  .bounce {
+    animation: bounce 1s infinite;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .tagline {
+    font-size: 1.6rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+    background: linear-gradient(45deg, #FF4081, #2196F3);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    margin-top: 0.5rem;
+  }
+  
+  .slide-in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  

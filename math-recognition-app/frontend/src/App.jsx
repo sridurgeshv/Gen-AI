@@ -1,39 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
-import Canvas from './components/Canvas';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './contexts/AuthContext';
 import Welcome from './components/Welcome';
+import SignIn from './components/Signin';
+import Dashboard from './components/Dashboard';
+
+function PrivateRoute({ children }) {
+  const { user, loading } = useAuth();
+  
+  if (loading) {
+    return <div>Loading...</div>; 
+  }
+  
+  return user ? children : <Navigate to="/signin" />;
+}
 
 function App() {
-  const [showWelcome, setShowWelcome] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-  
-  if (showWelcome) {
-    return <Welcome onComplete={() => setShowWelcome(false)} />;
-  }
-
   return (
-    <div className="app-container">
-      <div className="header-container">
-        <h1 className="animated-title">
-          <span className="letter">N</span>
-          <span className="letter">u</span>
-          <span className="letter">m</span>
-          <span className="letter bounce">B</span>
-          <span className="letter">u</span>
-          <span className="letter">d</span>
-          <span className="letter">d</span>
-          <span className="letter">y</span>
-        </h1>
-        <p className={`tagline ${isVisible ? 'slide-in' : ''}`}>
-          Your Friendly Math Sidekick!
-        </p>
-      </div>
-      <Canvas />
-    </div>
+      <AuthProvider>
+        <Router>
+         <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/signin" element={<SignIn />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            } 
+          />
+         </Routes>
+        </Router>
+      </AuthProvider>
   );
 }
 
