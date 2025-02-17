@@ -31,7 +31,7 @@ const Canvas = () => {
       });
 
       fabricRef.current.freeDrawingBrush.width = 2;
-      fabricRef.current.freeDrawingBrush.color = '#000000';
+      fabricRef.current.freeDrawingBrush.color = '#000';
     }
 
     return () => {
@@ -123,7 +123,6 @@ const Canvas = () => {
       setIsLoading(false);
     }
   };
-
 
   return (
     <div className="main-content">
