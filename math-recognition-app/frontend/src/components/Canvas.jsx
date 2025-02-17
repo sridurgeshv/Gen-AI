@@ -27,7 +27,7 @@ const Canvas = () => {
         isDrawingMode: true,
         backgroundColor: 'white',
         width: 600,
-        height: 400,
+        height: 500,
       });
 
       fabricRef.current.freeDrawingBrush.width = 2;
