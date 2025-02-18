@@ -52,24 +52,3 @@ pip install opencv-python
 uvicorn main:app --reload
 ```
 The backend API will be available at `http://localhost:8000.`
-
-
-## Firebase settings 
-1. Install Firebase CLI
-
-
-```bash
-npm install -g firebase-tools
-```
-
-2. login 
-```bash
-firebase login
-```
-
-3. initialize the project
-```bash
-firebase init
-```
-
-4. Host
