@@ -19,7 +19,7 @@ function SignIn() {
   };
 
   return (
-    <div className="min-hs-screen">
+    <div className="min-h-screen">
       <div className="bg-white">
         <h2>NumBuddy</h2>
         <button onClick={handleSignIn}>
