@@ -163,3 +163,15 @@ async def solve_equation(equation_data: dict):
             content={"error": f"Failed to solve equation: {str(e)}"}, 
             status_code=500
         )
+
+@app.post("/api/update-user")
+async def update_user(user_data: dict):
+    try:
+        # Here you would typically store this in your database
+        # For now, we'll just return success response
+        return JSONResponse(content={"message": "User updated successfully"})
+    except Exception as e:
+        return JSONResponse(
+            content={"error": f"Failed to update user: {str(e)}"}, 
+            status_code=500
+        )
