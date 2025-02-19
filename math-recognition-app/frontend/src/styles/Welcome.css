@@ -65,6 +65,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(4px);
+    width: 250px;
   }
   
   .start-button:hover {
