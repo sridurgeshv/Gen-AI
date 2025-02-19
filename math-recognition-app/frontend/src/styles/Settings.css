@@ -1,249 +1,295 @@
 /* Settings.css */
 
 .settings-container {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f9f9f9;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  }
-  
-  h2 {
-    text-align: center;
-    color: #333;
-    font-size: 1.8rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
 }
-  
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  label {
-    font-weight: bold;
-    color: #555;
-  }
-  
-  input {
-    padding: 0.8rem 1rem;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    font-size: 1rem;
-    background-color: #fff;
-    color: #333;
-    transition: border-color 0.3s ease;
-  }
-  
-  input:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-  }
-  
- .Update-button {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
- }
 
-  .update-btn,
+.back-button {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+  transform: translateX(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-button:active {
+  transform: scale(0.95);
+}
+
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: bold;
+  color: #555;
+}
+
+input {
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+  color: #333;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+
+.Update-button {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+
+.update-btn,
 .update-btn *,
 .update-btn :after,
 .update-btn :before,
 .update-btn:after,
 .update-btn:before {
-  border: 0 solid;
-  box-sizing: border-box;
+border: 0 solid;
+box-sizing: border-box;
 }
 
 .update-btn {
-  -webkit-tap-highlight-color: transparent;
-  -webkit-appearance: button;
-  background-color: #000;
-  background-image: none;
-  color: #fff;
-  cursor: pointer;
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
-    Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
-    Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 90%;
-  font-weight: 900;
-  line-height: 1.5;
-  margin: 0;
-  -webkit-mask-image: -webkit-radial-gradient(#000, #fff);
-  padding: 0;
+-webkit-tap-highlight-color: transparent;
+-webkit-appearance: button;
+background-color: #000;
+background-image: none;
+color: #fff;
+cursor: pointer;
+font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+  Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
+  Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+font-size: 90%;
+font-weight: 900;
+line-height: 1.5;
+margin: 0;
+-webkit-mask-image: -webkit-radial-gradient(#000, #fff);
+padding: 0;
 } 
 
 .update-btn:disabled {
-  cursor: default;
+cursor: default;
 }
 .update-btn:-moz-focusring {
-  outline: auto;
+outline: auto;
 }
 .update-btn svg {
-  display: block;
-  vertical-align: middle;
+display: block;
+vertical-align: middle;
 }
 .update-btn [hidden] {
-  display: none;
+display: none;
 }
 .update-btn {
-  border: 2px solid;
-  border-radius: 999px;
-  box-sizing: border-box;
-  display: block;
-  overflow: hidden;
-  padding: 1.2rem 3rem;
-  width: 50%;
-  position: relative;
-  text-transform: uppercase;
+border: 2px solid;
+border-radius: 999px;
+box-sizing: border-box;
+display: block;
+overflow: hidden;
+padding: 1.2rem 3rem;
+width: 50%;
+position: relative;
+text-transform: uppercase;
 }
 
 .update-btn span {
-  font-weight: 900;
-  mix-blend-mode: difference;
+font-weight: 900;
+mix-blend-mode: difference;
 }
 .update-btn:before {
-  background: 
-#fff;
-  bottom: 0;
-  content: "";
-  left: 0;
-  position: absolute;
-  width: 100%;
+background: #fff;
+bottom: 0;
+content: "";
+left: 0;
+position: absolute;
+width: 100%;
 }
 .update-btn:hover:before {
-  -webkit-animation: progress-bar 1.2s;
-  animation: progress-bar 1.2s;
+-webkit-animation: progress-bar 1.2s;
+animation: progress-bar 1.2s;
 }
 @-webkit-keyframes progress-bar {
-  0% {
-    height: 0%;
-    opacity: 1;
-  }
-  10% {
-    height: 15%;
-    opacity: 1;
-  }
-  25% {
-    height: 25%;
-    opacity: 1;
-  }
-  40% {
-    height: 35%;
-    opacity: 1;
-  }
-  55% {
-    height: 75%;
-    opacity: 1;
-  }
-  60% {
-    height: 100%;
-    opacity: 1;
-  }
-  to {
-    height: 100%;
-    opacity: 0;
-  }
+0% {
+  height: 0%;
+  opacity: 1;
+}
+10% {
+  height: 15%;
+  opacity: 1;
+}
+25% {
+  height: 25%;
+  opacity: 1;
+}
+40% {
+  height: 35%;
+  opacity: 1;
+}
+55% {
+  height: 75%;
+  opacity: 1;
+}
+60% {
+  height: 100%;
+  opacity: 1;
+}
+to {
+  height: 100%;
+  opacity: 0;
+}
 }
 @keyframes progress-bar {
-  0% {
-    height: 0%;
-    opacity: 1;
-  }
-  10% {
-    height: 15%;
-    opacity: 1;
-  }
-  25% {
-    height: 25%;
-    opacity: 1;
-  }
-  40% {
-    height: 35%;
-    opacity: 1;
-  }
-  55% {
-    height: 75%;
-    opacity: 1;
-  }
-  60% {
-    height: 100%;
-    opacity: 1;
-  }
-  to {
-    height: 100%;
-    opacity: 0;
-  }
+0% {
+  height: 0%;
+  opacity: 1;
+}
+10% {
+  height: 15%;
+  opacity: 1;
+}
+25% {
+  height: 25%;
+  opacity: 1;
+}
+40% {
+  height: 35%;
+  opacity: 1;
+}
+55% {
+  height: 75%;
+  opacity: 1;
+}
+60% {
+  height: 100%;
+  opacity: 1;
+}
+to {
+  height: 100%;
+  opacity: 0;
+}
 }
 
 .update-btn:hover {
-  color: black;
+color: black;
 }
 
-  .photo-preview {
-    margin-top: 1rem;
-    text-align: center;
-  }
-  
-  .photo-preview img {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    border: 2px solid #007bff;
-  }
-  
-  .message {
-    margin-top: 1rem;
-    color: green;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .msg-form {
-    color:#0056b3;
+.photo-preview {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.photo-preview img {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  border: 2px solid #007bff;
+}
+
+.message {
+  margin-top: 1rem;
+  color: green;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.msg-form {
+  color:#0056b3;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+  .settings-container {
+    padding: 1rem;
   }
 
-  /* Responsive Design */
-  
-  @media (max-width: 768px) {
-    .settings-container {
-      padding: 1rem;
-    }
-  
-    h2 {
-      font-size: 1.5rem;
-    }
-  
-    button {
-      font-size: 1rem;
-      padding: 0.7rem 1rem;
-    }
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 0.7rem 1rem;
   }
   
-  @media (max-width: 480px) {
-    .settings-container {
-      padding: 1rem;
-      border-radius: 8px;
-    }
-  
-    button {
-      font-size: 0.9rem;
-      padding: 0.6rem 0.8rem;
-    }
-  
-    .photo-preview img {
-      max-width: 120px;
-    }
+  .back-button {
+    top: 1rem;
+    left: 1rem;
+    width: 35px;
+    height: 35px;
   }
+}
+
+@media (max-width: 480px) {
+  .settings-container {
+    padding: 1rem;
+    border-radius: 8px;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .photo-preview img {
+    max-width: 120px;
+  }
+  
+  .back-button {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .back-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}

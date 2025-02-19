@@ -48,12 +48,22 @@ function Settings() {
     }
   };
 
+  const handleBack = () => {
+    navigate(-1);
+  };
+
   if (!user) {
     return <div>Please log in to access settings.</div>;
   }
 
   return (
     <div className="settings-container">
+      <div className="back-button" onClick={handleBack}>
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 12H5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          <path d="M12 19L5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
       <h2>User Settings</h2>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
