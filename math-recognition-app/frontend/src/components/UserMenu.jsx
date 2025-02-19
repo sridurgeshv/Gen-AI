@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import { Settings, LogOut, User } from 'lucide-react';
+import '../styles/UserMenu.css';
 
 const UserMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -23,38 +24,40 @@ const UserMenu = () => {
   };
 
   return (
-    <div className="relative">
+    <div className="user-menu">
       {/* User Icon Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+        className="user-icon-button"
       >
         {user?.photoURL ? (
           <img
             src={user.photoURL}
             alt="User"
-            className="w-8 h-8 rounded-full"
+            className="user-avatar"
           />
         ) : (
-          <User className="w-6 h-6 text-gray-700" />
+          <div className="user-icon-wrapper">
+            <User className="user-icon" />
+          </div>
         )}
       </button>
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg py-1 z-50">
+        <div className="dropdown-menu">
           <button
             onClick={handleSettings}
-            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+            className="menu-item"
           >
-            <Settings className="w-4 h-4" />
+            <Settings className="menu-icon" />
             Settings
           </button>
           <button
             onClick={handleSignOut}
-            className="w-full px-4 py-2 text-left text-sm text-gray-700 hover:bg-gray-100 flex items-center gap-2"
+            className="menu-item"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="menu-icon" />
             Sign out
           </button>
         </div>
