@@ -126,13 +126,10 @@ const Canvas = () => {
 
   return (
     <div className="main-content">
-    <div className="canvas-container">
-      <div
+      <div className="canvas-container">
+        <div
           ref={canvasRef}
-          style={{
-            border: '4px solid #000',
-            borderRadius: '10px'
-          }}
+          className="canvas-wrapper"
         />
         <div className="button-container">          
           <button onClick={handleRecognize} disabled={isLoading}>
