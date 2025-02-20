@@ -21,8 +21,8 @@ function SignIn() {
   return (
     <div className="min-h-screen">
       <div className="bg-white">
-        <h2>NumBuddy</h2>
-        <button onClick={handleSignIn}>
+        <h2>Unleash the Power: Dive into the AI Frontier!</h2>
+        <button className="sign-in-btn" onClick={handleSignIn}>
           <img
             src="https://cdn.cdnlogo.com/logos/g/35/google-icon.svg"
             alt="Google"
