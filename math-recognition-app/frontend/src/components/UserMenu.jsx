@@ -12,7 +12,7 @@ const UserMenu = () => {
   const handleSignOut = async () => {
     try {
       await logout();
-      navigate('/');
+      navigate('/welcome');
     } catch (error) {
       console.error('Error signing out:', error);
     }
