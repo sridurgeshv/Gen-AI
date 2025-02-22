@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import '../styles/Dashboard.css';
 import Canvas from './Canvas';
 import UserMenu from './UserMenu';
+import RealTimeMathRecognition from './RealTimeMathRecognition';
 
 function Dashboard() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showRealTime, setShowRealTime] = useState(false);
 
   useEffect(() => {
     setIsVisible(true);
@@ -32,7 +34,23 @@ function Dashboard() {
           <UserMenu />
         </div>
       </div>
+      
       <Canvas />
+      
+      <div className="realtime-section">
+        <button 
+          className="realtime-toggle-btn"
+          onClick={() => setShowRealTime(!showRealTime)}
+        >
+          {showRealTime ? 'Hide Camera Recognition' : 'Open Camera Recognition'}
+        </button>
+        
+        {showRealTime && (
+          <div className="realtime-container">
+            <RealTimeMathRecognition />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
