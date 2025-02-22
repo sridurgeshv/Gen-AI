@@ -44,7 +44,7 @@ const Welcome = ({ onComplete }) => {
       <div className={`content-container ${showContent ? "show" : ""}`}>
         <h1 className="welcome-title">NumBuddy</h1>
         <p className="welcome-text">
-          AI-powered Math Recognition & Learning <br />
+          AI-powered Math Recognition <br />
           <span className="highlight-text">Transform Numbers into Knowledge</span>
         </p>
         {showButton && (
