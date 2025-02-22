@@ -90,15 +90,13 @@
 }
 
 .realtime-toggle-btn {
-  background-color: #007bff;
-  color: white;
-  border: none;
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, #007bff 0%, #6366f1 100%);
   padding: 0.8rem 1.5rem;
   border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: background-color 0.3s ease;
-  margin-bottom: 1rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  gap: 12px;
 }
 
 .realtime-toggle-btn:hover {

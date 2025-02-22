@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Dashboard.css';
+import { Camera } from 'lucide-react';
 import Canvas from './Canvas';
 import UserMenu from './UserMenu';
 import RealTimeMathRecognition from './RealTimeMathRecognition';
+import '../styles/Dashboard.css';
 
 function Dashboard() {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,12 +39,14 @@ function Dashboard() {
       <Canvas />
       
       <div className="realtime-section">
-        <button 
-          className="realtime-toggle-btn"
+      <button 
+          className="realtime-toggle-btn flex items-center gap-2 hover:scale-105 transform transition-all"
           onClick={() => setShowRealTime(!showRealTime)}
         >
-          {showRealTime ? 'Hide Camera Recognition' : 'Open Camera Recognition'}
+          <Camera className="w-5 h-5" />
+          <span>{showRealTime ? 'Hide Live-Feed' : 'Live-Feed'}</span>
         </button>
+      </div>
         
         {showRealTime && (
           <div className="realtime-container">
@@ -51,7 +54,6 @@ function Dashboard() {
           </div>
         )}
       </div>
-    </div>
   );
 }
 
