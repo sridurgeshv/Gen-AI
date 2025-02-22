@@ -3,6 +3,7 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from PIL import Image, ImageFilter
 import io
+import re
 import torch
 from transformers import Qwen2VLForConditionalGeneration, AutoProcessor
 import numpy as np
@@ -50,6 +51,44 @@ def preprocess_image(image: Image) -> Image:
     threshold_image_pil = threshold_image_pil.filter(ImageFilter.MedianFilter(3))
 
     return threshold_image_pil
+
+// new latex formatting 
+def format_plain_text(latex_equation: str) -> str:
+    """
+    Converts LaTeX mathematical expressions into a human-readable plain text format.
+    - Ensures no unnecessary trailing characters.
+    - Corrects mathematical notation.
+    """
+    # Remove LaTeX delimiters like $$...$$ or \[...\]
+    formatted = re.sub(r'^\$\$|\$\$$', '', latex_equation)  # Remove `$$ ... $$`
+    formatted = re.sub(r'\\\[|\]', '', formatted)  # Remove `\[ ... \]`
+    
+    # Replace common LaTeX math symbols with readable text
+    replacements = {
+        r'\\frac{([^}]+)}{([^}]+)}': r'(\1/\2)',  # Convert fraction \frac{a}{b} → (a/b)
+        r'\\sqrt{([^}]+)}': r'√(\1)',  # Convert \sqrt{a} → √(a)
+        r'\\sin': 'sin', r'\\cos': 'cos', r'\\tan': 'tan',  # Trigonometric functions
+        r'\\int_{([^}]+)}^{([^}]+)}': r'∫_{\1}^{\2}',  # Definite integral notation
+        r'\\int': '∫',  # Generic integral
+        r'\\sum': '∑', r'\\prod': '∏',  # Summation and product
+        r'\\cup': '∪', r'\\cap': '∩',  # Union and intersection
+        r'\\left\(': '(', r'\\right\)': ')',  # Remove LaTeX `\left(` and `\right)`
+        r'\\begin{bmatrix}': '[', r'\\end{bmatrix}': ']',  # Matrices
+        r'\\infty': '∞',  # Infinity symbol
+        r'\\rightarrow': '→', r'\\to': '→',  # Arrows
+        r'\\geq': '≥', r'\\leq': '≤', r'\\neq': '≠',  # Inequalities
+        r'\\cdot': '·',  # Dot product
+        r'\\, dx': ' dx'  # **Remove backslash before dx**
+    }
+
+    # Apply all replacements
+    for latex, plain in replacements.items():
+        formatted = re.sub(latex, plain, formatted)
+
+    # **Remove trailing backslashes (\) or unnecessary spaces**
+    formatted = formatted.rstrip('\\').strip()
+
+    return formatted
 
 # Endpoint to process math recognition
 @app.post("/recognize")
@@ -175,3 +214,16 @@ async def update_user(user_data: dict):
             content={"error": f"Failed to update user: {str(e)}"}, 
             status_code=500
         )
+
+// realtime route     
+@app.post("/live_recognize")
+async def recognize_math_gemini(file: UploadFile = File(...)):
+    try:
+        contents = await file.read()
+        image = Image.open(io.BytesIO(contents)).convert("RGB")
+        response = client.models.generate_content(
+            model="gemini-2.0-flash", contents=[image, "Recognize the equation in this image."]
+        )
+        return JSONResponse(content={"recognized_text": response.text})
+    except Exception as e:
+        return JSONResponse(content={"error": str(e)}, status_code=500)     
