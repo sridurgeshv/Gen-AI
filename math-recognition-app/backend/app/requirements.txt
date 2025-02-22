@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+pillow
+torch
+torchvision
+torchaudio --index-url https://download.pytorch.org/whl/cpu
+transformers
+accelerate
+qwen-vl-utils
+google-genai
+opencv-contrib-python
+opencv-python
+huggingface_hub
+python-multipart
