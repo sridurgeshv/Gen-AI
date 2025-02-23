@@ -15,7 +15,7 @@ Numbuddy is a real-time handwriting recognition system for mathematical expressi
 - Native LaTeX output support for precise mathematical notation
 - Seamless integration with FastAPI backend
 
-  ## Note 
+### Note 
 The application defaults to CPU processing because of which the response flow will be little slower while The LatexMind-2B-Codec model effectively recognizes handwritten equations but works best with clear handwriting. It supports LaTeX formatting, though complex expressions may need slight adjustments. High-resolution images ensure optimal accuracy. While it excels at recognizing math expressions, multi-step problem-solving may require some user input.
 
 ### Secondary Model: Gemini-2.0-Flash
