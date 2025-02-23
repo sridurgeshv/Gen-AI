@@ -141,14 +141,19 @@ async def recognize_math(file: UploadFile = File(...)):
         # Clean up the recognized text by removing unnecessary tokens
         cleaned_text = output_text[0].replace("<|im_end|>", "").strip()
 
-        # Return the recognized text
-        return JSONResponse(content={"recognized_text": cleaned_text})
+        if cleaned_text.startswith("$$") and cleaned_text.endswith("$$"):
+           cleaned_text = cleaned_text[2:-2]
+
+       # Format the recognized text into a readable format
+        formatted_text = format_plain_text(cleaned_text)
+
+        # Return the cleaned and formatted text
+        return JSONResponse(content={"recognized_text": formatted_text})
 
     except Exception as e:
         print(f"Error: {str(e)}")  # Print error to debug
         return JSONResponse(content={"error": str(e)}, status_code=500)
     
-
 client = genai.Client(api_key="AIzaSyBW4iVtavUDmevGZlLqp1BGhzyi-mMvRiw")
 
 @app.post("/gemini_recognize")
