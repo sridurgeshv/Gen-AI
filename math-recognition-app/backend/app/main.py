@@ -147,6 +147,8 @@ async def recognize_math(file: UploadFile = File(...)):
        # Format the recognized text into a readable format
         formatted_text = format_plain_text(cleaned_text)
 
+        print(f"Recognized Text: {formatted_text}")  # Print recognized text to debug
+
         # Return the cleaned and formatted text
         return JSONResponse(content={"recognized_text": formatted_text})
 
