@@ -46,7 +46,7 @@ cd backend/app
 pip install -r requirements.txt
 ```
 1. Open `main.py`.
-2. Locate **line 113**.
+2. Locate **line 157**.
 3. Replace `YOUR_API_KEY` with your Gemini API key.
 
 Start the backend server:
@@ -62,6 +62,9 @@ Backend API will be available at `http://localhost:8000`.
 
 ## License
 This project is licensed under the MIT License.
+
+## Video Demo
+For a comprehensive overview of the application's features and functionality, please watch our [video demonstration](https://youtu.be/Nd51CygnFpg). This walkthrough provides detailed guidance on effectively using and navigating NumBuddy.
 
 ---
 ### Contributing
