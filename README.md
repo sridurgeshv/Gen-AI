@@ -26,13 +26,19 @@ Numbuddy is a real-time handwriting recognition system for mathematical expressi
 - **Python** (3.8 or higher)
 - **pip** package manager
 
+### Note: For linux or cloud based users run this command in backend/app folder 
+
+```bash
+sudo apt-get update && sudo apt-get install -y libgl1-mesa-glx
+```
+
 ### Frontend Setup
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
-The frontend will be available at `http://localhost:3000`.
+The frontend will be available at `http://localhost:5173`.
 
 ### Backend Setup
 ```bash
