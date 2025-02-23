@@ -154,7 +154,7 @@ async def recognize_math(file: UploadFile = File(...)):
         print(f"Error: {str(e)}")  # Print error to debug
         return JSONResponse(content={"error": str(e)}, status_code=500)
     
-client = genai.Client(api_key="AIzaSyBW4iVtavUDmevGZlLqp1BGhzyi-mMvRiw")
+client = genai.Client(api_key="YOUR_API_KEY")
 
 @app.post("/gemini_recognize")
 async def recognize_math_gemini(file: UploadFile = File(...)):
