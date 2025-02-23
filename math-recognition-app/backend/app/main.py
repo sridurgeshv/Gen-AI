@@ -52,7 +52,7 @@ def preprocess_image(image: Image) -> Image:
 
     return threshold_image_pil
 
-// new latex formatting 
+
 def format_plain_text(latex_equation: str) -> str:
     """
     Converts LaTeX mathematical expressions into a human-readable plain text format.
@@ -215,7 +215,7 @@ async def update_user(user_data: dict):
             status_code=500
         )
 
-// realtime route     
+  
 @app.post("/live_recognize")
 async def recognize_math_gemini(file: UploadFile = File(...)):
     try:
